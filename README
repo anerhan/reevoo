@@ -2,6 +2,6 @@
  > cd reevoo
  > bundle install
  > cp config/sqlite.database.yml config/database.yml
- > rake db:make
+ > rake db:make && rake
 
 
