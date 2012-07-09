@@ -8,7 +8,9 @@ class TariffRule < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :discount, :presence => true, :numericality => true, :inclusion => {:in => 0..10000}
-  validates :quantity, :schema, :presence => true, :numericality => true
+  validates :quantity, :schema, :presence => true, :numericality => {:only_integer=>true}
+  validates :schema,   :numericality => true, :inclusion => {:in => 0..SCHEMAS.size}
+
 
   # Returns index by Schema Name
   def self.schema(rule_name)

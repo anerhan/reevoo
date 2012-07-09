@@ -1,9 +1,20 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+---
+buy_one_get_one_free:
+  name: Buy one get one free
+  discount: 3.11
+  quantity: 2
+  schema: <%=TariffRule.schema(:every_free)%>
 
-one:
-  name: MyString
-  discount: 9.99
+3_or_more:
+  name: Discount 0.5 for all after 3 or more items
+  discount: 0.5
+  quantity: 3
+  schema: <%=TariffRule.schema(:for_all)%>
 
-two:
-  name: MyString
-  discount: 9.99
+
+
+
+
+
+
+

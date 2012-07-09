@@ -3,3 +3,5 @@
  > bundle install
  > cp config/sqlite.database.yml config/database.yml
  > rake db:make
+
+
