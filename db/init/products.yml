@@ -1,0 +1,24 @@
+---
+fr1:
+  code: FR1
+  name: Fruit tea
+  price: 3.11
+  tariff_rule: buy_one_get_one_free
+sr1:
+  code: SR1
+  name:  Strawberries
+  price: 5.00
+  tariff_rule: 3_or_more
+cf1:
+  code: CF1
+  name:  Coffee
+  price: 11.23
+
+#FR1 Fruit tea £ 3.11
+#SR1 Strawberries £ 5.00
+#CF1 Coffee £11.23
+
+
+
+
+
