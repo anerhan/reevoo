@@ -17,7 +17,7 @@ class TariffRule < ActiveRecord::Base
     SCHEMAS.find_index(:"#{rule_name}")
   end
 
-
+  #Apply discount for ProductsLists Object
   def apply(products)
     rule_products = products.select{ |p| p.tariff_rule_id == id }
     full_price    = rule_products.collect { |p| p.price }.sum

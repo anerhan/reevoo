@@ -9,7 +9,15 @@ class Checkout < ActiveRecord::Base
 
   #Returns Current total price
   def scan(product)
-    @products << product
+    case product.class.name
+      when "Product"
+        @products << product
+      when "Array"
+        @products += product
+      when "String"
+        @products << Product.find_by_code(product)
+    end
+    @products = @products.compact
     total
   end
 
@@ -20,7 +28,7 @@ class Checkout < ActiveRecord::Base
     if @products.size > 0
       without_rule_products = @products.select { |p| p.tariff_rule_id == nil }
       total_without_rule = (without_rule_products.size > 0 ? without_rule_products.collect { |p| p.price }.sum : 0)
-      @tariff_rules = tariff_rules.size > 0 ? tariff_rules : TariffRule.where("id IN (?)",@products.collect { |p| p.tariff_rule_id }.uniq)
+      @tariff_rules = tariff_rules.size > 0 ? tariff_rules : TariffRule.where("id IN (?)", @products.collect { |p| p.tariff_rule_id }.uniq)
       if @tariff_rules.size > 0
         @tariff_rules.each do |tr|
           @total += tr.apply(@products)
