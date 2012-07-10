@@ -4,7 +4,7 @@ class Checkout < ActiveRecord::Base
   def initialize(tariff_rules = [])
     @tariff_rules = tariff_rules
     @products = []
-    @total = 0.0
+    @total = 0
   end
 
   #Returns Current total price
@@ -15,7 +15,8 @@ class Checkout < ActiveRecord::Base
 
 
   def total
-    @total = 0.0
+    @total = 0
+    total_without_rule = 0
     if @products.size > 0
       without_rule_products = @products.select { |p| p.tariff_rule_id == nil }
       total_without_rule = (without_rule_products.size > 0 ? without_rule_products.collect { |p| p.price }.sum : 0)
