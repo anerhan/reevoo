@@ -10,3 +10,4 @@ public
 .rspec
 .rails-version
 config/database.yml
+db/*.sqlite3

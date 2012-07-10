@@ -755,3 +755,56 @@ Migrating to CreateCheckouts (20120709191647)
   [1m[35m (69.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20120709191647')
   [1m[36m (59.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20120709173356')[0m
   [1m[35m (60.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20120709173754')
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (39.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (8.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProducts (20120709173356)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tariff_rule_id" integer, "code" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "price" decimal(8,2), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("products")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_products_on_tariff_rule_id" ON "products" ("tariff_rule_id")[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120709173356')
+  [1m[36m (8.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateTariffRules (20120709173754)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "tariff_rules" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "quantity" integer DEFAULT 0 NOT NULL, "discount" decimal(8,2), "schema" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120709173754')
+  [1m[36m (9.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCheckouts (20120709191647)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "checkouts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120709191647')
+  [1m[36m (8.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.7ms)[0m  select sqlite_version(*)
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("checkouts")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("products")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_products_on_tariff_rule_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("tariff_rules")[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.9ms)[0m  [1mDELETE FROM "products"[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id", "tariff_rule_id") VALUES ('FR1', 'Fruit tea', 3.11, '2012-07-09 23:59:58', '2012-07-09 23:59:58', 1070364113, 479563635)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id", "tariff_rule_id") VALUES ('SR1', 'Strawberries', 5.0, '2012-07-09 23:59:58', '2012-07-09 23:59:58', 622924888, 385018992)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id") VALUES ('CF1', 'Coffee', 11.23, '2012-07-09 23:59:58', '2012-07-09 23:59:58', 396976243)
+  [1m[36m (9.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (1.1ms)[0m  [1mDELETE FROM "tariff_rules"[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "tariff_rules" ("name", "discount", "quantity", "schema", "created_at", "updated_at", "id") VALUES ('Buy one get one free', 3.11, 2, 0, '2012-07-09 23:59:58', '2012-07-09 23:59:58', 479563635)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "tariff_rules" ("name", "discount", "quantity", "schema", "created_at", "updated_at", "id") VALUES ('Discount 0.5 for all after 3 or more items', 0.5, 3, 1, '2012-07-09 23:59:58', '2012-07-09 23:59:58', 385018992)[0m
+  [1m[35m (8.6ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.4ms)[0m  select sqlite_version(*)
+  [1m[36m (12.5ms)[0m  [1mCREATE TABLE "checkouts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (9.9ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tariff_rule_id" integer, "code" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "price" decimal(8,2), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("products")[0m
+  [1m[35m (11.6ms)[0m  CREATE INDEX "index_products_on_tariff_rule_id" ON "products" ("tariff_rule_id")
+  [1m[36m (12.3ms)[0m  [1mCREATE TABLE "tariff_rules" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "quantity" integer DEFAULT 0 NOT NULL, "discount" decimal(8,2), "schema" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (13.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (30.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.4ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (9.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20120709191647')
+  [1m[36m (10.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20120709173356')[0m
+  [1m[35m (11.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20120709173754')
