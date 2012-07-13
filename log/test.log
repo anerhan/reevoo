@@ -2010,3 +2010,88 @@
   [1m[35mProduct Load (0.0ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 622924888]]
   [1m[36mProduct Load (0.0ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 1070364113]]
   [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.7ms)[0m  DELETE FROM "products"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id", "tariff_rule_id") VALUES ('FR1', 'Fruit tea', 3.11, '2012-07-13 13:42:34', '2012-07-13 13:42:34', 1070364113, 479563635)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id", "tariff_rule_id") VALUES ('SR1', 'Strawberries', 5.0, '2012-07-13 13:42:34', '2012-07-13 13:42:34', 622924888, 385018992)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id") VALUES ('CF1', 'Coffee', 11.23, '2012-07-13 13:42:34', '2012-07-13 13:42:34', 396976243)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "tariff_rules"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "tariff_rules" ("name", "discount", "quantity", "schema", "created_at", "updated_at", "id") VALUES ('Buy one get one free', 3.11, 2, 0, '2012-07-13 13:42:34', '2012-07-13 13:42:34', 479563635)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "tariff_rules" ("name", "discount", "quantity", "schema", "created_at", "updated_at", "id") VALUES ('Discount 0.5 for all after 3 or more items', 0.5, 3, 1, '2012-07-13 13:42:34', '2012-07-13 13:42:34', 385018992)
+  [1m[36m (10.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mTariffRule Load (0.4ms)[0m  [1mSELECT "tariff_rules".* FROM "tariff_rules" WHERE "tariff_rules"."id" = ? LIMIT 1[0m  [["id", 479563635]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "products" ("code", "created_at", "name", "price", "tariff_rule_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["code", "PR1"], ["created_at", Fri, 13 Jul 2012 13:42:34 UTC +00:00], ["name", "Product 1"], ["price", #<BigDecimal:49f1cb8,'0.1E5',9(18)>], ["tariff_rule_id", nil], ["updated_at", Fri, 13 Jul 2012 13:42:34 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.7ms)[0m  DELETE FROM "products"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id", "tariff_rule_id") VALUES ('FR1', 'Fruit tea', 3.11, '2012-07-13 13:42:39', '2012-07-13 13:42:39', 1070364113, 479563635)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id", "tariff_rule_id") VALUES ('SR1', 'Strawberries', 5.0, '2012-07-13 13:42:39', '2012-07-13 13:42:39', 622924888, 385018992)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "products" ("code", "name", "price", "created_at", "updated_at", "id") VALUES ('CF1', 'Coffee', 11.23, '2012-07-13 13:42:39', '2012-07-13 13:42:39', 396976243)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "tariff_rules"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "tariff_rules" ("name", "discount", "quantity", "schema", "created_at", "updated_at", "id") VALUES ('Buy one get one free', 3.11, 2, 0, '2012-07-13 13:42:39', '2012-07-13 13:42:39', 479563635)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "tariff_rules" ("name", "discount", "quantity", "schema", "created_at", "updated_at", "id") VALUES ('Discount 0.5 for all after 3 or more items', 0.5, 3, 1, '2012-07-13 13:42:39', '2012-07-13 13:42:39', 385018992)
+  [1m[36m (10.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mTariffRule Load (0.3ms)[0m  [1mSELECT "tariff_rules".* FROM "tariff_rules" [0m
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 1070364113]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mTariffRule Load (0.3ms)[0m  [1mSELECT "tariff_rules".* FROM "tariff_rules" [0m
+  [1m[35mProduct Load (0.1ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 1070364113]]
+  [1m[36mProduct Load (0.0ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 622924888]]
+  [1m[35mProduct Load (0.0ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 396976243]]
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mTariffRule Load (0.3ms)[0m  [1mSELECT "tariff_rules".* FROM "tariff_rules" [0m
+  [1m[35mProduct Load (0.0ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1  [["id", 622924888]]
+  [1m[36mProduct Load (0.0ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT 1[0m  [["id", 1070364113]]
+  [1m[35m (0.0ms)[0m  rollback transaction
