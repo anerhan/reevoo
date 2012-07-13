@@ -9,7 +9,7 @@ class TariffRule < ActiveRecord::Base
   validates :name, :presence => true
   validates :discount, :presence => true, :numericality => true, :inclusion => {:in => 0..10000}
   validates :quantity, :schema, :presence => true, :numericality => {:only_integer=>true}
-  validates :schema,   :numericality => true, :inclusion => {:in => 0..SCHEMAS.size}
+  validates :schema,   :numericality => true, :inclusion => {:in => 0..(SCHEMAS.size - 1)}
 
 
   # Returns index by Schema Name
@@ -27,7 +27,7 @@ class TariffRule < ActiveRecord::Base
     if quantity == 0
       @dc = rp_count * discount
     elsif quantity > 0
-      send(SCHEMAS[schema])
+      send(SCHEMAS[schema]) if @rp_count >= quantity
     end
     full_price - @dc
   end
@@ -36,11 +36,11 @@ class TariffRule < ActiveRecord::Base
   private
 
   def every_free
-    @dc = (@rp_count >= quantity ? ((@rp_count / quantity) * discount) : 0)
+    @dc =  (@rp_count / quantity) * discount
   end
 
   def for_all
-    @dc = (@rp_count >= quantity ? (quantity * discount) : 0)
+    @dc = quantity * discount
   end
 
 end
